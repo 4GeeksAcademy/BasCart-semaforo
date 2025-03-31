@@ -1,28 +1,29 @@
 import React from "react";
+import { useState } from "react";
+import { colorLight } from "./colorLight";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+export const Home = () => {
 
-//create your first component
-const Home = () => {
+	const [color, setcolor] = useState("");
+
+	const colorChange = (newColor) => {
+		setcolor((currentColor) => currentColor === newColor ? "" : newColor);
+
+	}
+
 	return (
-		<div className="text-center">
-            
-
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
+		<div>
+			<div className="d-flex flex-column bg-dark mx-auto p-3 gap-3" style={{ width: "13%" }}>
+				<div className="d-flex items-align-center justify-content-center" style={{ width: "100%", ...colorLight("red", color) }}>
+					<button type="button" onClick={() => colorChange("red")} className="d-flex btn btn-danger rounded-circle" style={{ height: "150px", width: "100%" }} ></button>
+				</div>
+				<div className="d-flex items-align-center justify-content-center" style={{ width: "100%", ...colorLight("yellow", color) }}>
+					<button type="button" onClick={() => colorChange("yellow")} className="d-flex btn btn-warning rounded-circle " style={{ height: "150px", width: "100%" }}></button>
+				</div>
+				<div className="d-flex items-align-center justify-content-center" style={{ width: "100%", ...colorLight("green", color) }}>
+					<button type="button" onClick={() => colorChange("green")} className="d-flex btn btn-success rounded-circle" style={{ height: "150px", width: "100%" }}></button>
+				</div>
+			</div>
 		</div>
-	);
-};
-
-export default Home;
+	)
+};	
